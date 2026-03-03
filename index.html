@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACME Data Protection | IT Management & GDPR Compliance</title>
+  <meta name="description" content="Malin — Senior IT Consultant & Certified DPO. 12+ years in IT Management and Data Protection. Serving clients across Romania and Europe."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:    #0a1628;
+      --deep:    #0d1f3c;
+      --accent:  #c8973a;
+      --gold:    #e8b96a;
+      --light:   #f4f1eb;
+      --white:   #ffffff;
+      --muted:   #8a9ab5;
+      --border:  rgba(200,151,58,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent; border: 1px solid var(--accent);
+      color: var(--accent); padding: 0.55rem 1.4rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: all 0.25s; text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--navy); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 4rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,151,58,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(13,31,60,0.9) 0%, transparent 60%),
+        linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--accent) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 700px;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 2rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--accent);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: normal; color: var(--accent);
+      font-weight: 600;
+    }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--muted); max-width: 520px;
+      margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: var(--navy);
+      padding: 0.9rem 2.2rem; font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; border: none; cursor: pointer;
+      text-decoration: none; transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--light);
+      padding: 0.9rem 2.2rem; font-size: 0.85rem;
+      font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 1px solid rgba(244,241,235,0.3);
+      cursor: pointer; text-decoration: none; transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats {
+      position: absolute; right: 4rem; bottom: 6rem; z-index: 1;
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .stat {
+      text-align: right;
+      border-right: 2px solid var(--accent);
+      padding-right: 1.2rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+    .section-tag {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-tag::before {
+      content: ''; width: 28px; height: 1px; background: var(--accent);
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    h2 strong { font-weight: 700; color: var(--accent); }
+
+    /* ── SERVICES ── */
+    #services { background: var(--deep); }
+    .services-intro {
+      max-width: 560px; margin-bottom: 4rem;
+    }
+    .services-intro p {
+      color: var(--muted); line-height: 1.8; font-size: 1rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .service-card {
+      background: var(--deep);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.4s ease;
+    }
+    .service-card:hover::before { height: 100%; }
+    .service-card:hover { background: rgba(13,31,60,0.95); }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 700;
+      color: rgba(200,151,58,0.12);
+      line-height: 1; margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-num { color: rgba(200,151,58,0.25); }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .service-card p {
+      color: var(--muted); line-height: 1.75;
+      font-size: 0.92rem; margin-bottom: 1.5rem;
+    }
+    .service-list {
+      list-style: none; display: flex;
+      flex-direction: column; gap: 0.5rem;
+    }
+    .service-list li {
+      font-size: 0.82rem; color: var(--muted);
+      padding-left: 1.2rem; position: relative;
+    }
+    .service-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--accent); font-size: 0.75rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-frame {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--deep), var(--navy));
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-frame::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px;
+      width: 60px; height: 60px;
+      border-top: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
+    }
+    .about-frame::after {
+      content: '';
+      position: absolute; bottom: -1px; right: -1px;
+      width: 60px; height: 60px;
+      border-bottom: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+    .about-placeholder {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--muted);
+      text-align: center; padding: 2rem;
+      letter-spacing: 0.05em;
+    }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--accent); color: var(--navy);
+      padding: 1.5rem; text-align: center;
+      width: 120px; height: 120px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .about-badge .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 700; line-height: 1;
+    }
+    .about-badge .lbl {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+    .about-content p {
+      color: var(--muted); line-height: 1.85;
+      font-size: 0.97rem; margin-bottom: 1.2rem;
+    }
+    .about-certs {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin-top: 2rem;
+    }
+    .cert-tag {
+      border: 1px solid var(--border);
+      color: var(--accent); font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.4rem 1rem;
+    }
+
+    /* ── WHY ── */
+    #why { background: var(--deep); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 4rem;
+    }
+    .why-card {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .why-icon {
+      font-size: 1.8rem; margin-bottom: 1rem;
+    }
+    .why-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.6rem;
+    }
+    .why-card p {
+      color: var(--muted); font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .contact-info p {
+      color: var(--muted); line-height: 1.8;
+      font-size: 0.97rem; margin-bottom: 2rem;
+    }
+    .contact-detail {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-detail-text {
+      font-size: 0.9rem; color: var(--light);
+    }
+    .contact-detail-label {
+      font-size: 0.7rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--light); padding: 0.85rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select option { background: var(--deep); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(5,12,25,0.95);
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: gap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.78rem; color: var(--muted);
+      text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.78rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle {
+      display: flex; gap: 0.4rem;
+    }
+    .lang-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.08em;
+      padding: 0.3rem 0.6rem; cursor: pointer;
+      transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn.active,
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag  { animation: fadeUp 0.6s ease 0.1s both; }
+    h1         { animation: fadeUp 0.6s ease 0.25s both; }
+    .hero-sub  { animation: fadeUp 0.6s ease 0.4s both; }
+    .hero-actions { animation: fadeUp 0.6s ease 0.55s both; }
+    .hero-stats { animation: fadeUp 0.6s ease 0.7s both; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3; margin: 0;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section, #home { padding: 5rem 1.5rem 3rem; }
+      #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-stats { display: none; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ACME<span>.</span>DP</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ro')">RO</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-en="Let's Talk" data-ro="Contact">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag" data-en="Senior IT Consultant & Certified DPO" data-ro="Consultant IT Senior & DPO Certificat">Senior IT Consultant & Certified DPO</div>
+    <h1 data-en="Your Data.<br><em>Protected.</em><br>Your IT. <em>Managed.</em>" data-ro="Datele Tale.<br><em>Protejate.</em><br>IT-ul Tău. <em>Gestionat.</em>">Your Data.<br><em>Protected.</em><br>Your IT. <em>Managed.</em></h1>
+    <p class="hero-sub" data-en="Over 12 years of hands-on IT management experience, combined with certified Data Protection expertise. One trusted independent consultant — no agency overhead, just results." data-ro="Peste 12 ani de experiență practică în management IT, combinată cu expertiză certificată în Protecția Datelor. Un consultant independent de încredere — fără costuri de agenție, doar rezultate.">Over 12 years of hands-on IT management experience, combined with certified Data Protection expertise. One trusted independent consultant — no agency overhead, just results.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary" data-en="Get in Touch" data-ro="Contactează-mă">Get in Touch</a>
+      <a href="#services" class="btn-outline" data-en="View Services" data-ro="Vezi Servicii">View Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">12+</div>
+      <div class="stat-label" data-en="Years Experience" data-ro="Ani Experiență">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label" data-en="Core Specialisms" data-ro="Specializări">Core Specialisms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">EU</div>
+      <div class="stat-label" data-en="GDPR Certified" data-ro="Certificat GDPR">GDPR Certified</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro">
+    <div class="section-tag" data-en="What I Do" data-ro="Ce Fac">What I Do</div>
+    <h2 data-en="Services Built Around <strong>Your Needs</strong>" data-ro="Servicii Construite în Jurul <strong>Nevoilor Tale</strong>">Services Built Around <strong>Your Needs</strong></h2>
+    <p data-en="Whether you need a trusted IT partner, a certified Data Protection Officer, or someone to manage your digital infrastructure — I bring senior-level expertise without the agency price tag." data-ro="Fie că ai nevoie de un partener IT de încredere, un Ofițer de Protecție a Datelor certificat, sau cineva care să gestioneze infrastructura ta digitală — aduc expertiză de nivel senior fără costurile unei agenții.">Whether you need a trusted IT partner, a certified Data Protection Officer, or someone to manage your digital infrastructure — I bring senior-level expertise without the agency price tag.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3 data-en="IT Management & Consulting" data-ro="Management & Consultanță IT">IT Management & Consulting</h3>
+      <p data-en="Strategic IT leadership and hands-on management for companies that need senior expertise without a full-time hire." data-ro="Leadership IT strategic și management practic pentru companii care au nevoie de expertiză senior fără un angajat cu normă întreagă.">Strategic IT leadership and hands-on management for companies that need senior expertise without a full-time hire.</p>
+      <ul class="service-list">
+        <li data-en="IT strategy & roadmap planning" data-ro="Strategie IT & planificare roadmap">IT strategy & roadmap planning</li>
+        <li data-en="Vendor & supplier management" data-ro="Managementul furnizorilor">Vendor & supplier management</li>
+        <li data-en="Infrastructure oversight & optimisation" data-ro="Supraveghere & optimizare infrastructură">Infrastructure oversight & optimisation</li>
+        <li data-en="IT team leadership & mentoring" data-ro="Leadership & mentorat echipă IT">IT team leadership & mentoring</li>
+        <li data-en="Technology audits & assessments" data-ro="Audituri & evaluări tehnologice">Technology audits & assessments</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3 data-en="DPO as a Service" data-ro="DPO ca Serviciu">DPO as a Service</h3>
+      <p data-en="Certified Data Protection Officer services — ensuring your organisation stays fully compliant with GDPR and Romanian data protection law." data-ro="Servicii de Ofițer de Protecție a Datelor certificat — asigurând că organizația ta respectă pe deplin GDPR și legislația română privind protecția datelor.">Certified Data Protection Officer services — ensuring your organisation stays fully compliant with GDPR and Romanian data protection law.</p>
+      <ul class="service-list">
+        <li data-en="GDPR compliance audits" data-ro="Audituri de conformitate GDPR">GDPR compliance audits</li>
+        <li data-en="Privacy policy & documentation" data-ro="Politici de confidențialitate & documentație">Privacy policy & documentation</li>
+        <li data-en="Data mapping & ROPA registers" data-ro="Cartografierea datelor & registre ROPA">Data mapping & ROPA registers</li>
+        <li data-en="Staff training & awareness" data-ro="Instruire & conștientizare personal">Staff training & awareness</li>
+        <li data-en="Incident response & breach management" data-ro="Răspuns la incidente & gestionarea breșelor">Incident response & breach management</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3 data-en="Site & Technology Management" data-ro="Management Site & Tehnologie">Site & Technology Management</h3>
+      <p data-en="End-to-end management of your digital platforms and technology stack — keeping everything running smoothly and securely." data-ro="Managementul end-to-end al platformelor digitale și stivei tehnologice — menținând totul funcțional și securizat.">End-to-end management of your digital platforms and technology stack — keeping everything running smoothly and securely.</p>
+      <ul class="service-list">
+        <li data-en="Web platform management & monitoring" data-ro="Managementul & monitorizarea platformei web">Web platform management & monitoring</li>
+        <li data-en="Tech stack audits & recommendations" data-ro="Audituri & recomandări tech stack">Tech stack audits & recommendations</li>
+        <li data-en="Performance & uptime optimisation" data-ro="Optimizarea performanței & disponibilității">Performance & uptime optimisation</li>
+        <li data-en="Security hardening & monitoring" data-ro="Întărirea & monitorizarea securității">Security hardening & monitoring</li>
+        <li data-en="Digital transformation advisory" data-ro="Consultanță transformare digitală">Digital transformation advisory</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-frame">
+      <div class="about-placeholder">
+        <p data-en="Professional photo" data-ro="Fotografie profesională">Professional photo</p>
+        <p style="font-size:0.75rem;margin-top:0.5rem;opacity:0.5" data-en="Add your headshot here" data-ro="Adaugă fotografia ta aici">Add your headshot here</p>
+      </div>
+    </div>
+    <div class="about-badge">
+      <div class="num">12+</div>
+      <div class="lbl" data-en="Years in IT" data-ro="Ani în IT">Years in IT</div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <div class="section-tag" data-en="About Me" data-ro="Despre Mine">About Me</div>
+    <h2 data-en="Senior IT Expert.<br><strong>Malin.</strong>" data-ro="Expert IT Senior.<br><strong>Malin.</strong>">Senior IT Expert.<br><strong>Malin.</strong></h2>
+    <p data-en="With over 12 years of experience in IT management — including serving as Head of IT at a software company — I've built a career on delivering technology solutions that actually work for the business, not just on paper." data-ro="Cu peste 12 ani de experiență în management IT — inclusiv ca Head of IT la o companie de software — mi-am construit cariera pe livrarea de soluții tehnologice care funcționează cu adevărat pentru afacere, nu doar pe hârtie.">With over 12 years of experience in IT management — including serving as Head of IT at a software company — I've built a career on delivering technology solutions that actually work for the business, not just on paper.</p>
+    <p data-en="As a certified Data Protection Officer, I help organisations navigate the complexities of GDPR compliance with clarity and confidence. I understand both the technical and legal dimensions — a rare combination that saves my clients time and risk." data-ro="Ca Ofițer de Protecție a Datelor certificat, ajut organizațiile să navigheze complexitățile conformității GDPR cu claritate și încredere. Înțeleg atât dimensiunile tehnice, cât și cele juridice — o combinație rară care economisește timp și reduce riscurile clienților mei.">As a certified Data Protection Officer, I help organisations navigate the complexities of GDPR compliance with clarity and confidence. I understand both the technical and legal dimensions — a rare combination that saves my clients time and risk.</p>
+    <p data-en="Working independently means you get direct access to senior expertise — no account managers, no juniors, no inflated agency fees. Just honest, experienced counsel." data-ro="Activând independent înseamnă că ai acces direct la expertiză senior — fără manageri de cont, fără juniori, fără onorarii umflate de agenție. Doar consultanță onestă și experimentată.">Working independently means you get direct access to senior expertise — no account managers, no juniors, no inflated agency fees. Just honest, experienced counsel.</p>
+    <div class="about-certs">
+      <span class="cert-tag" data-en="Certified DPO" data-ro="DPO Certificat">Certified DPO</span>
+      <span class="cert-tag" data-en="12+ Years IT Management" data-ro="12+ Ani Management IT">12+ Years IT Management</span>
+      <span class="cert-tag" data-en="GDPR Specialist" data-ro="Specialist GDPR">GDPR Specialist</span>
+      <span class="cert-tag" data-en="Head of IT Experience" data-ro="Experiență Head of IT">Head of IT Experience</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-tag" data-en="Why Work With Me" data-ro="De Ce Să Lucrezi Cu Mine">Why Work With Me</div>
+  <h2 data-en="The Independent <strong>Advantage</strong>" data-ro="Avantajul <strong>Independent</strong>">The Independent <strong>Advantage</strong></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h4 data-en="Direct Senior Access" data-ro="Acces Direct Senior">Direct Senior Access</h4>
+      <p data-en="You work directly with me — 12+ years of experience on every project, every call, every deliverable." data-ro="Lucrezi direct cu mine — 12+ ani de experiență pe fiecare proiect, fiecare apel, fiecare livrabil.">You work directly with me — 12+ years of experience on every project, every call, every deliverable.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚖️</div>
+      <h4 data-en="IT + Legal Dual Expertise" data-ro="Expertiză Dublă IT + Juridic">IT + Legal Dual Expertise</h4>
+      <p data-en="Rare combination of deep technical IT knowledge and certified data protection law — I bridge both worlds seamlessly." data-ro="Combinație rară de cunoștințe tehnice IT profunde și dreptul protecției datelor certificat — unesc ambele lumi fără efort.">Rare combination of deep technical IT knowledge and certified data protection law — I bridge both worlds seamlessly.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🇷🇴</div>
+      <h4 data-en="Local Market Knowledge" data-ro="Cunoașterea Pieței Locale">Local Market Knowledge</h4>
+      <p data-en="Based in Romania, fluent in both local regulatory requirements and European GDPR standards." data-ro="Bazat în România, fluent în cerințele de reglementare locale și standardele europene GDPR.">Based in Romania, fluent in both local regulatory requirements and European GDPR standards.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💡</div>
+      <h4 data-en="Practical, Not Theoretical" data-ro="Practic, Nu Teoretic">Practical, Not Theoretical</h4>
+      <p data-en="Every recommendation is grounded in real-world experience managing IT systems and compliance at scale." data-ro="Fiecare recomandare este ancorată în experiența din lumea reală în gestionarea sistemelor IT și a conformității la scară.">Every recommendation is grounded in real-world experience managing IT systems and compliance at scale.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-tag" data-en="Get In Touch" data-ro="Ia Legătura">Get In Touch</div>
+    <h2 data-en="Let's Talk About <strong>Your Project</strong>" data-ro="Să Vorbim Despre <strong>Proiectul Tău</strong>">Let's Talk About <strong>Your Project</strong></h2>
+    <p data-en="Whether you need IT guidance, GDPR compliance help, or a trusted technology partner — I'd love to hear about your situation and see how I can help." data-ro="Fie că ai nevoie de îndrumare IT, ajutor pentru conformitatea GDPR, sau un partener tehnologic de încredere — aș vrea să aud despre situația ta și să văd cum pot ajuta.">Whether you need IT guidance, GDPR compliance help, or a trusted technology partner — I'd love to hear about your situation and see how I can help.</p>
+
+    <div class="contact-detail">
+      <div class="contact-detail-icon">✉</div>
+      <div>
+        <div class="contact-detail-label" data-en="Email" data-ro="Email">Email</div>
+        <div class="contact-detail-text">contact@acmedp.com</div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">🌍</div>
+      <div>
+        <div class="contact-detail-label" data-en="Location" data-ro="Locație">Location</div>
+        <div class="contact-detail-text" data-en="Romania — serving clients across Europe" data-ro="România — servind clienți din toată Europa">Romania — serving clients across Europe</div>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">🕐</div>
+      <div>
+        <div class="contact-detail-label" data-en="Response Time" data-ro="Timp de Răspuns">Response Time</div>
+        <div class="contact-detail-text" data-en="Within 24 hours" data-ro="În 24 de ore">Within 24 hours</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-en="Your Name" data-ro="Numele Tău">Your Name</label>
+          <input type="text" placeholder="Ion Popescu" required />
+        </div>
+        <div class="form-group">
+          <label data-en="Email Address" data-ro="Adresă Email">Email Address</label>
+          <input type="email" placeholder="ion@companie.ro" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-en="Service Needed" data-ro="Serviciu Necesar">Service Needed</label>
+        <select>
+          <option data-en="IT Management & Consulting" data-ro="Management & Consultanță IT">IT Management & Consulting</option>
+          <option data-en="DPO / GDPR Compliance" data-ro="DPO / Conformitate GDPR">DPO / GDPR Compliance</option>
+          <option data-en="Site & Technology Management" data-ro="Management Site & Tehnologie">Site & Technology Management</option>
+          <option data-en="Not sure yet" data-ro="Nu știu încă">Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-en="Your Message" data-ro="Mesajul Tău">Your Message</label>
+        <textarea placeholder="Tell me about your project or challenge..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;border:none;" data-en="Send Message" data-ro="Trimite Mesaj">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ACME<span>.</span>DP</div>
+  <div class="footer-copy">
+    <span data-en="© 2025 ACME Data Protection. All rights reserved." data-ro="© 2025 ACME Data Protection. Toate drepturile rezervate.">© 2025 ACME Data Protection. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#" data-en="Privacy Policy" data-ro="Politica de Confidențialitate">Privacy Policy</a>
+    <a href="#services" data-en="Services" data-ro="Servicii">Services</a>
+    <a href="#contact" data-en="Contact" data-ro="Contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Language switcher
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else {
+        el.innerHTML = text;
+      }
+    });
+  }
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = currentLang === 'ro' ? 'Trimis! ✓' : 'Sent! ✓';
+    btn.style.background = '#2a7a4b';
+    setTimeout(() => {
+      btn.textContent = currentLang === 'ro' ? 'Trimite Mesaj' : 'Send Message';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
