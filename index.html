@@ -46,6 +46,12 @@
       color: var(--white); letter-spacing: 0.04em;
     }
     .nav-logo span { color: var(--accent); }
+    .nav-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.15rem;
+    }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       color: var(--muted); text-decoration: none;
@@ -390,6 +396,12 @@
       color: var(--white);
     }
     .footer-logo span { color: var(--accent); }
+    .footer-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.15rem;
+    }
     .footer-copy {
       font-size: 0.78rem; color: var(--muted);
       text-align: center;
@@ -448,7 +460,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">ACME<span>.</span>DP</div>
+  <div class="nav-logo">ACME <span>Data Protection</span><div class="nav-tagline">GDPR Compliance &amp; IT Management</div></div>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#services">Services</a></li>
@@ -621,7 +633,7 @@
       <div class="contact-detail-icon">✉</div>
       <div>
         <div class="contact-detail-label" data-en="Email" data-ro="Email">Email</div>
-        <div class="contact-detail-text">contact@acmedp.com</div>
+        <div class="contact-detail-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74171b1a00151700341517191110045a171b19">[email&#160;protected]</a></div>
       </div>
     </div>
     <div class="contact-detail">
@@ -672,7 +684,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">ACME<span>.</span>DP</div>
+  <div class="footer-logo">ACME <span>Data Protection</span><div class="footer-tagline">GDPR Compliance &amp; IT Management</div></div>
   <div class="footer-copy">
     <span data-en="© 2025 ACME Data Protection. All rights reserved." data-ro="© 2025 ACME Data Protection. Toate drepturile rezervate.">© 2025 ACME Data Protection. All rights reserved.</span>
   </div>
@@ -683,7 +695,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Language switcher
   let currentLang = 'en';
 
@@ -719,13 +731,4 @@
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
     btn.textContent = currentLang === 'ro' ? 'Trimis! ✓' : 'Sent! ✓';
-    btn.style.background = '#2a7a4b';
-    setTimeout(() => {
-      btn.textContent = currentLang === 'ro' ? 'Trimite Mesaj' : 'Send Message';
-      btn.style.background = '';
-      e.target.reset();
-    }, 3000);
-  }
-</script>
-</body>
-</html>
+    btn.style.
